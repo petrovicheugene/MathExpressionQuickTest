@@ -42,6 +42,7 @@ $${PRODUCT_FILE_BASE_NAME}_kk.ts
 SOURCES += \
     ZDashBoardPane.cpp \
     ZMathExpressionHandler.cpp \
+    ZMathExpressionTextEdit.cpp \
     ZVariableTableModel.cpp \
     main.cpp \
     MainWindow.cpp
@@ -50,6 +51,7 @@ HEADERS += \
     MainWindow.h \
     ZDashBoardPane.h \
     ZMathExpressionHandler.h \
+    ZMathExpressionTextEdit.h \
     ZVariableTableModel.h
 
 # Default rules for deployment.

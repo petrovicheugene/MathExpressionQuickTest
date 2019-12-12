@@ -19,14 +19,20 @@ public:
 
     void zp_connectToVariableModel(QAbstractTableModel* model);
 
+
 signals:
 
+    void zg_expressionCalculationRequest(const QString& expression) const;
+
 public slots:
+
+    void zp_output(const QString& msg);
 
 private slots:
 
     void zh_onAddVariableButtonClick();
     void zh_onRemoveVariableButtonClick();
+    void zh_onGoButtonClick() const;
 
 private:
     //VARS

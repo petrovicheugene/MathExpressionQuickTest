@@ -25,12 +25,16 @@ public:
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
     // End of overrided funcs
 
-protected:
-    bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
-    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
 signals:
 
 public slots:
+
+    void zp_variableValue(const QString& variableName, qreal& value, bool &ok) const;
+
+protected:
+    bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+    bool removeRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
+
 
 private:
     //VARS

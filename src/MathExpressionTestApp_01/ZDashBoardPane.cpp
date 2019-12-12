@@ -110,6 +110,15 @@ void ZDashBoardPane::zh_createConnections()
             &QPushButton::clicked,
             this,
             &ZDashBoardPane::zh_onRemoveVariableButtonClick);
+    connect(zv_goButton,
+            &QPushButton::clicked,
+            this,
+            &ZDashBoardPane::zh_onGoButtonClick);
+    connect(zv_clearOutputButton,
+            &QPushButton::clicked,
+            zv_outputTextEdit,
+            &QTextEdit::clear);
+
 }
 //===========================================
 QString ZDashBoardPane::zh_createCaption(const QString& caption) const
@@ -205,3 +214,15 @@ void ZDashBoardPane::zh_onRemoveVariableButtonClick()
     }
 }
 //===========================================
+void ZDashBoardPane::zh_onGoButtonClick() const
+{
+    emit zg_expressionCalculationRequest(zv_expressionLineEdit->text());
+}
+//===========================================
+void ZDashBoardPane::zp_output(const QString& msg)
+{
+    zv_outputTextEdit->append(msg);
+}
+//===========================================
+
+

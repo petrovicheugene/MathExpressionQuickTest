@@ -5,7 +5,6 @@
 #include "ZMathExpressionHandler.h"
 #include "ZVariableTableModel.h"
 
-
 #include <QApplication>
 #include <QSettings>
 //===========================================
@@ -35,6 +34,18 @@ void MainWindow::zh_createComponents()
 void MainWindow::zh_createConnections()
 {
     zv_dashBoardPane->zp_connectToVariableModel(zv_variableTableModel);
+    connect(zv_dashBoardPane,
+            &ZDashBoardPane::zg_expressionCalculationRequest,
+            this,
+            &MainWindow::zh_calculateExpression);
+    connect(zv_mathExpressionHandler,
+            &ZMathExpressionHandler::zs_requestVariableValue,
+            zv_variableTableModel,
+            &ZVariableTableModel::zp_variableValue);
+    connect(zv_mathExpressionHandler,
+            &ZMathExpressionHandler::zs_errorReport,
+            this,
+            &MainWindow::zh_handleError);
 }
 //===========================================
 void MainWindow::zh_restoreSettings()
@@ -68,3 +79,24 @@ void MainWindow::zh_saveSettings() const
         settings.endGroup();
     }
 }
+//===========================================
+void MainWindow::zh_handleError(const QString& errorString,
+               int errorTokenStartPosition,
+               int errorTokenEndPosition)
+{
+    zv_dashBoardPane->zp_output(errorString);
+}
+//===========================================
+void MainWindow::zh_calculateExpression(const QString& expression) const
+{
+    double value;
+    if (zv_mathExpressionHandler->zp_calculateEquation(expression, value))
+    {
+        zv_dashBoardPane->zp_output(QString::number(value));
+    }
+    else
+    {
+
+    }
+}
+//===========================================

@@ -145,4 +145,18 @@ bool ZVariableTableModel::removeRows(int row, int count, const QModelIndex& pare
     return true;
 }
 //===========================================
+void ZVariableTableModel::zp_variableValue(const QString& variableName, qreal& value, bool& ok) const
+{
+    for (int i = 0; i < zv_variableList.count(); ++i)
+    {
+        if (zv_variableList.at(i).first == variableName)
+        {
+            value = zv_variableList.at(i).second;
+            ok = true;
+            return;
+        }
+    }
 
+    ok = false;
+}
+//===========================================
